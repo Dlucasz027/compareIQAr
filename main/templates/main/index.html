@@ -95,11 +95,18 @@ fetch('/iqar/')
         return;
     }
 
-    // Labels e valores
-    const labels = data.resultados.map(item => item.cidade);
-    const valores = data.resultados.map(item => item.aqi_eua ?? 0);
+    // Combina os dados em um array de objetos
+    const cidades = data.resultados.map(item => ({
+        cidade: item.cidade,
+        aqi: item.aqi_eua ?? 0
+    }));
 
-    // Converte AQI EUA para cores
+    // Ordena do melhor (menor AQI) para o pior (maior AQI)
+    cidades.sort((a, b) => a.aqi - b.aqi);
+
+    // Cria labels, valores e cores ordenados
+    const labels = cidades.map(item => item.cidade);
+    const valores = cidades.map(item => item.aqi);
     const cores = valores.map(v => {
         if (v <= 50) return "green";       // Boa
         else if (v <= 100) return "yellow"; // Moderada
