@@ -77,7 +77,31 @@
         Adicionalmente, a Resolução Conama nº 506/24 definiu que a forma de cálculo do IQAr deveria ser atualizada até a data de 31 de dezembro de 2024. Assim, o Ministério do Meio Ambiente e Mudança do Clima, por meio do Departamento de Qualidade Ambiental (DQA), coordenou junto aos órgãos ambientais estaduais e distrital a atualização da forma de cálculo do IQAr, tendo em vista os novos padrões de qualidade do ar estabelecidos.
     </p>
 </div>
+
 <!--API-->
+<div class="ui container section section-light">
+    <h2>Qualidade do Ar Atual</h2>
+    <p id="IQAr">Carregando...</p>
+</div>
+
+<script>
+fetch('/iqar/')  // chama a view Django que retorna JSON
+.then(res => res.json())  //O fetch retorna uma promessa (Promise) com a resposta HTTP - res.json() transforma a resposta em JSON (objeto JavaScript)
+.then(data => {  //JSON que a view iqar retornou
+    // Checa se data.list existe e tem pelo menos um item
+    if (!data.list || data.list.length === 0) {
+        document.getElementById('aqi').innerText = "Dados indisponíveis";
+        return;
+    }
+
+    let IQAr = data.list[0].main.aqi;
+    document.getElementById('IQAr').innerText = "IQAr: " + IQAr;
+})
+.catch(err => {  //Captura qualquer erro que aconteceu durante o fetch ou processamento do JSON
+    console.error(err);
+    document.getElementById('IQAr').innerText = "Erro ao carregar dados";
+});
+</script>
 
 
 <!-- Footer -->
