@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Landing Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.4/semantic.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .home {
+            background-color: #1b1c1d;
+            color: white;
+            padding: 6.0rem 0;
+            text-align: center;
+        }
+        .section {
+            padding: 60px 0; 
+        }
+        .section-dark {
+            background-color: #1b1c1d;
+            color: white;
+        }
+        .ui.button.primary {
+            background-color: #2185d0;
+            color: white;
+        }
+        .ui.inverted.menu{
+            border: 0 solid transparent;
+            background: #1b1c1d;
+            box-shadow: none;
+            margin:0;
+            border-radius: 0;
+        }
+        .ui.header{
+            color: #ffff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Menu Horizontal -->
+<div class="ui inverted menu">
+    <div class="ui container">
+        <a href="#" class="header item">Home</a>
+        <a class="item">API</a>
+        <a class="item">Linkedin</a>
+    </div>
+</div>
+
+<!-- Bloco da Home -->
+<div class="home">
+<!--Título-->
+    <h1 class="ui header">IQAr - Índice de Qualidade do Ar</h1>
+        <p>Descubra se a qualidade do ar da sua região está adequada.</p>
+    <div class="ui horizontal category search">
+    <div class="ui icon input">
+        <input class="prompt" type="text" placeholder="País, Estado, Cidade...">
+        <i class="search icon"></i>
+    </div>
+        <div class="results"></div>
+    </div>
+</div>
+<!--Texto-->
+<div class="ui container section section-light">
+    <p id="texto">
+        O Índice de Qualidade do Ar (IQAr) foi estabelecido inicialmente pela Resolução Conama nº 491, de 19 de novembro de 2018. Essa Resolução, assim como os padrões de qualidade do ar no Brasil, foi atualizada pela Resolução Conama nº 506, de 5 de julho de 2024.
+    </p>
+
+    <p>
+        O IQAr é uma ferramenta matemática utilizada para transformar as concentrações medidas dos diversos poluentes em um único valor adimensional, relacionando as concentrações dos poluentes monitorados aos possíveis efeitos adversos à saúde, visando facilitar a comunicação sobre a qualidade do ar à sociedade. Sua forma de cálculo e diretrizes para divulgação estão contidos na Orientação Técnica - Índice de Qualidade do Ar e também serão atualizados no Guia Técnico para o Monitoramento e Avaliação da Qualidade do ar.
+    </p>
+
+    <p>
+        Adicionalmente, a Resolução Conama nº 506/24 definiu que a forma de cálculo do IQAr deveria ser atualizada até a data de 31 de dezembro de 2024. Assim, o Ministério do Meio Ambiente e Mudança do Clima, por meio do Departamento de Qualidade Ambiental (DQA), coordenou junto aos órgãos ambientais estaduais e distrital a atualização da forma de cálculo do IQAr, tendo em vista os novos padrões de qualidade do ar estabelecidos.
+    </p>
+</div>
+<!--API-->
+
+
+<!-- Footer -->
+<div class="ui container section section-light">
+    <p>Saiba mais sobre IQA</p>
+    <button class="ui button">Fonte</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.4/semantic.min.js"></script>
+</body>
+</html>
