@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Landing Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.4/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             margin: 0;
@@ -82,46 +83,85 @@
 <div class="ui container section section-light">
     <h2>Qualidade do Ar Atual</h2>
     <p id="IQAr">Carregando...</p>
+    <canvas id="iqarChart"></canvas> <!--altera 1 -->
 </div>
 
 <script>
-fetch('/iqar/')  // chama a view Django que retorna JSON
+fetch('/iqar/')
 .then(res => res.json())
 .then(data => {
-    const container = document.getElementById('IQAr');
-    container.innerHTML = "";
-
-    // Checa se data.resultados existe e tem pelo menos um item
     if (!data.resultados || data.resultados.length === 0) {
-        container.innerText = "Dados indisponíveis";
+        document.getElementById('iqarChart').innerText = "Dados indisponíveis";
         return;
     }
 
-    const ul = document.createElement("ul");
+    // Monta arrays com os dados 2
+    const labels = data.resultados.map(item => item.cidade);
+    const valores = data.resultados.map(item => item.aqi_classificacao ?? 0);
 
-    data.resultados.forEach(item => {
-        const li = document.createElement("li");
-
-        // Traduz de 1 a 5 para texto
-        let status = "";
-        switch (item.aqi_classificacao) {
-            case 1: status = "Boa"; break;
-            case 2: status = "Razoável"; break;
-            case 3: status = "Moderada"; break;
-            case 4: status = "Ruim"; break;
-            case 5: status = "Muito ruim"; break;
-            default: status = "Indisponível";
+    // Converte os valores em cores
+    const cores = valores.map(v => {
+        switch (v) {
+            case 1: return "green";
+            case 2: return "yellow";
+            case 3: return "orange";
+            case 4: return "red";
+            case 5: return "purple";
+            default: return "gray";
         }
-
-        li.innerHTML = `<strong>${item.cidade}</strong>: ${status} (AQI: ${item.aqi_classificacao ?? "?"})`;
-        ul.appendChild(li);
     });
 
-    container.appendChild(ul);
+    // Cria gráfico 
+    const ctx = document.getElementById('iqarChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "AQI (Índice de Qualidade do Ar)",
+                data: valores,
+                backgroundColor: cores
+            }]
+        },
+        options: {
+            indexAxis: 'y', // barras horizontais
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    },
+                    title: {
+                        display: true,
+                        text: 'AQI'
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let status = "";
+                            switch (context.raw) {
+                                case 1: status = "Boa"; break;
+                                case 2: status = "Razoável"; break;
+                                case 3: status = "Moderada"; break;
+                                case 4: status = "Ruim"; break;
+                                case 5: status = "Muito ruim"; break;
+                                default: status = "Indisponível";
+                            }
+                            return `${status} (AQI: ${context.raw})`;
+                        }
+                    }
+                }
+            }
+        }
+    });
 })
 .catch(err => {
     console.error(err);
-    document.getElementById('IQAr').innerText = "Erro ao carregar dados";
+    document.getElementById('iqarChart').innerText = "Erro ao carregar dados";
 });
 </script>
 
