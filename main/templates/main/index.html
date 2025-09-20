@@ -95,30 +95,28 @@ fetch('/iqar/')
         return;
     }
 
-    // Monta arrays com os dados 2
+    // Labels e valores
     const labels = data.resultados.map(item => item.cidade);
-    const valores = data.resultados.map(item => item.aqi_classificacao ?? 0);
+    const valores = data.resultados.map(item => item.aqi_eua ?? 0);
 
-    // Converte os valores em cores
+    // Converte AQI EUA para cores
     const cores = valores.map(v => {
-        switch (v) {
-            case 1: return "green";
-            case 2: return "yellow";
-            case 3: return "orange";
-            case 4: return "red";
-            case 5: return "purple";
-            default: return "gray";
-        }
+        if (v <= 50) return "green";       // Boa
+        else if (v <= 100) return "yellow"; // Moderada
+        else if (v <= 150) return "orange";// Não saudável para grupos sensíveis
+        else if (v <= 200) return "red";   // Ruim
+        else if (v <= 300) return "purple";// Muito ruim
+        else return "maroon";               // Perigosa
     });
 
-    // Cria gráfico 
+    // Cria gráfico
     const ctx = document.getElementById('iqarChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: "AQI (Índice de Qualidade do Ar)",
+                label: "AQI (Índice de Qualidade do Ar EUA)",
                 data: valores,
                 backgroundColor: cores
             }]
@@ -128,12 +126,9 @@ fetch('/iqar/')
             scales: {
                 x: {
                     beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
-                    },
                     title: {
                         display: true,
-                        text: 'AQI'
+                        text: 'AQI EUA'
                     }
                 }
             },
@@ -142,16 +137,15 @@ fetch('/iqar/')
                 tooltip: {
                     callbacks: {
                         label: function(context) {
+                            const v = context.raw;
                             let status = "";
-                            switch (context.raw) {
-                                case 1: status = "Boa"; break;
-                                case 2: status = "Razoável"; break;
-                                case 3: status = "Moderada"; break;
-                                case 4: status = "Ruim"; break;
-                                case 5: status = "Muito ruim"; break;
-                                default: status = "Indisponível";
-                            }
-                            return `${status} (AQI: ${context.raw})`;
+                            if (v <= 50) status = "Boa";
+                            else if (v <= 100) status = "Moderada";
+                            else if (v <= 150) status = "Não saudável p/ grupos sensíveis";
+                            else if (v <= 200) status = "Ruim";
+                            else if (v <= 300) status = "Muito ruim";
+                            else status = "Perigosa";
+                            return `${status} (AQI: ${v})`;
                         }
                     }
                 }
