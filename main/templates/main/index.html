@@ -86,18 +86,40 @@
 
 <script>
 fetch('/iqar/')  // chama a view Django que retorna JSON
-.then(res => res.json())  //O fetch retorna uma promessa (Promise) com a resposta HTTP - res.json() transforma a resposta em JSON (objeto JavaScript)
-.then(data => {  //JSON que a view iqar retornou
-    // Checa se data.list existe e tem pelo menos um item
-    if (!data.list || data.list.length === 0) {
-        document.getElementById('aqi').innerText = "Dados indisponíveis";
+.then(res => res.json())
+.then(data => {
+    const container = document.getElementById('IQAr');
+    container.innerHTML = "";
+
+    // Checa se data.resultados existe e tem pelo menos um item
+    if (!data.resultados || data.resultados.length === 0) {
+        container.innerText = "Dados indisponíveis";
         return;
     }
 
-    let IQAr = data.list[0].main.aqi;
-    document.getElementById('IQAr').innerText = "IQAr: " + IQAr;
+    const ul = document.createElement("ul");
+
+    data.resultados.forEach(item => {
+        const li = document.createElement("li");
+
+        // Traduz de 1 a 5 para texto
+        let status = "";
+        switch (item.aqi_classificacao) {
+            case 1: status = "Boa"; break;
+            case 2: status = "Razoável"; break;
+            case 3: status = "Moderada"; break;
+            case 4: status = "Ruim"; break;
+            case 5: status = "Muito ruim"; break;
+            default: status = "Indisponível";
+        }
+
+        li.innerHTML = `<strong>${item.cidade}</strong>: ${status} (AQI: ${item.aqi_classificacao ?? "?"})`;
+        ul.appendChild(li);
+    });
+
+    container.appendChild(ul);
 })
-.catch(err => {  //Captura qualquer erro que aconteceu durante o fetch ou processamento do JSON
+.catch(err => {
     console.error(err);
     document.getElementById('IQAr').innerText = "Erro ao carregar dados";
 });
