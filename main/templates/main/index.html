@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Landing Page</title>
+    <title>IQAr Quality</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.4/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -46,8 +46,8 @@
 <div class="ui inverted menu">
     <div class="ui container">
         <a href="#" class="header item">Home</a>
-        <a class="item">API</a>
-        <a class="item">Linkedin</a>
+        <a class="item" href="https://openweathermap.org/api/air-pollution">API</a>
+        <a class="item" href="https://www.linkedin.com/in/delucas027/">Linkedin</a>
     </div>
 </div>
 
@@ -56,16 +56,29 @@
 <!--Título-->
     <h1 class="ui header">IQAr - Índice de Qualidade do Ar</h1>
         <p>Descubra se a qualidade do ar da sua região está adequada.</p>
-    <div class="ui horizontal category search">
-    <div class="ui icon input">
-        <input class="prompt" type="text" placeholder="País, Estado, Cidade...">
-        <i class="search icon"></i>
+
+    <div class="ui search selection dropdown">
+        <input name="states" type="hidden">
+        <i class="dropdown icon"></i>
+        <div class="default text">Estados</div>
+            <div class="menu">
+                <div class="unfilterable item" data-value="AL">Alabama (unfilterable)</div>
+                <div class="item" data-value="AK">Alaska</div>
+                <div class="unfilterable item" data-value="AZ">Arizona (unfilterable)</div>
+                <div class="unfilterable item" data-value="AR">Arkansas (unfilterable)</div>
+                <div class="item" data-value="CA">California</div>
+                <div class="item" data-value="OH">Ohio</div>
+                <div class="item" data-value="OK">Oklahoma</div>
+            </div>
+        </div>
     </div>
         <div class="results"></div>
     </div>
 </div>
+
 <!--Texto-->
 <div class="ui container section section-light">
+    <h2>IQAr no Brasil</h2>
     <p id="texto">
         O Índice de Qualidade do Ar (IQAr) foi estabelecido inicialmente pela Resolução Conama nº 491, de 19 de novembro de 2018. Essa Resolução, assim como os padrões de qualidade do ar no Brasil, foi atualizada pela Resolução Conama nº 506, de 5 de julho de 2024.
     </p>
@@ -79,10 +92,113 @@
     </p>
 </div>
 
+<!-- Tabela AQI -->
+<div class="ui container section section-light">
+    <h2>Índice de Qualidade do Ar (IQAr) - Escala Americana</h2>
+    <p><em>Estamos utilizando a escala de classificação dos EUA (EPA). Veja abaixo como funciona:</em></p>
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>AQI</th>
+            <th>Nível</th>
+            <th>Cor</th>
+            <th>O₃ (8h)</th>
+            <th>O₃ (1h)</th>
+            <th>PM₂.₅ (24h)</th>
+            <th>PM₁₀ (24h)</th>
+            <th>CO (8h)</th>
+            <th>SO₂</th>
+            <th>NO₂ (1h)</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr>
+                <td>0–50</td>
+                <td>Bom</td>
+                <td style="background:#2196F3"></td> <!--Azul-->
+                <td>0–54</td>
+                <td>-</td>
+                <td>0.0–12.0</td>
+                <td>0–54</td>
+                <td>0.0–4.4</td>
+                <td>0–35 (1h)</td>
+                <td>0–53</td>
+            </tr>
+            <tr>
+                <td>151–200</td>
+                <td>Insalubre</td>
+                <td style="background:#4CAF50"></td> <!--Verde-->
+                <td>86–105</td>
+                <td>165–204</td>
+                <td>55.5–150.4</td>
+                <td>255–354</td>
+                <td>12.5–15.4</td>
+                <td>186–304 (1h)</td>
+                <td>361–649</td>
+            </tr>
+            <tr>
+                <td>201–300</td>
+                <td>Muito prejudicial</td>
+                <td style="background:#FFEB3B"></td> <!--Amarelo-->
+                <td>106–200</td>
+                <td>205–404</td>
+                <td>150.5–250.4</td>
+                <td>355–424</td>
+                <td>15.5–30.4</td>
+                <td>305–604 (24h)</td>
+                <td>650–1249</td>
+            </tr>
+            <tr>
+                <td>301–400</td>
+                <td>Perigoso</td>
+                <td style="background:#FF9800"></td> <!--Laranja-->
+                <td>-</td>
+                <td>405–504</td>
+                <td>250.5–350.4</td>
+                <td>425–504</td>
+                <td>30.5–40.4</td>
+                <td>605–804 (24h)</td>
+                <td>1250–1649</td>
+            </tr>
+            <tr>
+                <td>401–500</td>
+                <td>Perigoso / Muito perigoso</td>
+                <td style="background:#F44336"></td> <!--Vermelho-->
+                <td>-</td>
+                <td>505–604</td>
+                <td>350.5–500.4</td>
+                <td>505–604</td>
+                <td>40.5–50.4</td>
+                <td>805–1004 (24h)</td>
+                <td>1650–2049</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--Texto 2-->
+<div class="ui container section section-light">
+    <h2>A poluição do ar pode causar problemas de saúde?</h2>
+    <p id="texto2">
+    A poluição do ar refere-se a substâncias no ar que são prejudiciais à saúde humana e/ou ao planeta como um todo. Em níveis significativos, todos os tipos de poluição do ar representam um risco de efeitos adversos à saúde. A quantidade de risco para complicações de saúde depende da saúde geral de uma pessoa, do tipo de poluente, da concentração e da duração da exposição ao ar poluído.
+    </p>
+
+    <p>
+    A Organização Mundial da Saúde (OMS) considerou a poluição do ar como o maior risco ambiental à saúde em 2019, estimando que contribui para 7 milhões de mortes prematuras anualmente. Entre as crianças com menos de 15 anos, é a principal causa de morte, matando 600.000 a cada ano.
+    </p>
+
+    <p>
+    A poluição do ar é descrita como um 'assassino silencioso' porque raramente é a causa direta de morte. Em vez disso, a poluição do ar é a 4ª principal causa contribuinte de morte precoce no mundo, representando:
+    </p>
+
+
+
+
 <!--API-->
 <div class="ui container section section-light">
-    <h2>Qualidade do Ar Atual</h2>
-    <p id="IQAr">Carregando...</p>
+    <h2>Qualidade do Ar Atual nas capitais do Brasil</h2>
+        <p><em>Segundo a escala de classificação dos EUA (EPA):</em></p>
     <canvas id="iqarChart"></canvas> <!--altera 1 -->
 </div>
 
