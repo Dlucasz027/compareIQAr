@@ -8,13 +8,8 @@ def home(request):
     return render(request, "main/index.html")
 
 
-def iqar(request):
-    API_KEY = "de5c09f082acc1dd5b48d10c25095d22"
+API_KEY = settings.API_KEY
 
-from django.http import JsonResponse
-import requests
-
-API_KEY = "de5c09f082acc1dd5b48d10c25095d22"
 
 # Faixas de poluentes para o cálculo do AQI (EUA)
 breakpoints = {
