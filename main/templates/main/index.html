@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IQAr Quality</title>
+    <title>{% block title %}IQAr Quality{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.4/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.3/semantic.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -46,8 +48,8 @@
 <div class="ui inverted menu">
     <div class="ui container">
         <a href="#" class="header item">Home</a>
-        <a class="item" href="https://openweathermap.org/api/air-pollution">API</a>
-        <a class="item" href="https://www.linkedin.com/in/delucas027/">Linkedin</a>
+        <a class="item" href="https://openweathermap.org/api/air-pollution" target="_blank">API</a>
+        <a class="item" href="https://www.linkedin.com/in/delucas027/" target="_blank">Linkedin</a>
     </div>
 </div>
 
@@ -57,24 +59,73 @@
     <h1 class="ui header">IQAr - Índice de Qualidade do Ar</h1>
         <p>Descubra se a qualidade do ar da sua região está adequada.</p>
 
-    <div class="ui search selection dropdown">
-        <input name="states" type="hidden">
+    <div class="ui search selection dropdown" id="estadoDropdown">
+<input name="estado" type="hidden">
         <i class="dropdown icon"></i>
-        <div class="default text">Estados</div>
-            <div class="menu">
-                <div class="unfilterable item" data-value="AL">Alabama (unfilterable)</div>
-                <div class="item" data-value="AK">Alaska</div>
-                <div class="unfilterable item" data-value="AZ">Arizona (unfilterable)</div>
-                <div class="unfilterable item" data-value="AR">Arkansas (unfilterable)</div>
-                <div class="item" data-value="CA">California</div>
-                <div class="item" data-value="OH">Ohio</div>
-                <div class="item" data-value="OK">Oklahoma</div>
-            </div>
+        <div class="default text">Selecione um Estado</div>
+        <div class="menu">
+            <div class="divider"></div>
+            
+            <div class="item" data-value="AC">Acre (AC)</div>
+            <div class="item" data-value="AL">Alagoas (AL)</div>
+            <div class="item" data-value="AP">Amapá (AP)</div>
+            <div class="item" data-value="AM">Amazonas (AM)</div>
+            <div class="item" data-value="BA">Bahia (BA)</div>
+            <div class="item" data-value="CE">Ceará (CE)</div>
+            <div class="item" data-value="DF">Distrito Federal (DF)</div>
+            <div class="item" data-value="ES">Espírito Santo (ES)</div>
+            <div class="item" data-value="GO">Goiás (GO)</div>
+            <div class="item" data-value="MA">Maranhão (MA)</div>
+            <div class="item" data-value="MT">Mato Grosso (MT)</div>
+            <div class="item" data-value="MS">Mato Grosso do Sul (MS)</div>
+            <div class="item" data-value="MG">Minas Gerais (MG)</div>
+            <div class="item" data-value="PA">Pará (PA)</div>
+            <div class="item" data-value="PB">Paraíba (PB)</div>
+            <div class="item" data-value="PR">Paraná (PR)</div>
+            <div class="item" data-value="PE">Pernambuco (PE)</div>
+            <div class="item" data-value="PI">Piauí (PI)</div>
+            <div class="item" data-value="RJ">Rio de Janeiro (RJ)</div>
+            <div class="item" data-value="RN">Rio Grande do Norte (RN)</div>
+            <div class="item" data-value="RS">Rio Grande do Sul (RS)</div>
+            <div class="item" data-value="RO">Rondônia (RO)</div>
+            <div class="item" data-value="RR">Roraima (RR)</div>
+            <div class="item" data-value="SC">Santa Catarina (SC)</div>
+            <div class="item" data-value="SP">São Paulo (SP)</div>
+            <div class="item" data-value="SE">Sergipe (SE)</div>
+            <div class="item" data-value="TO">Tocantins (TO)</div>
         </div>
     </div>
         <div class="results"></div>
     </div>
 </div>
+<script>
+// A função $(document).ready garante que o DOM (seu HTML) está totalmente carregado
+// antes de tentar inicializar o componente Fomantic-UI.
+$(document).ready(function() {
+    
+    // Inicializa o dropdown e adiciona o evento de mudança (onChange)
+    $('#estadoDropdown').dropdown({
+        // A função onChange é executada sempre que um novo item é selecionado
+        onChange: function(value, text, $selectedItem) {
+            
+            // Aqui adicionamos a lógica de rolagem (scroll)
+            $('html, body').animate({
+                // Pega a posição (topo) do elemento com o ID 'iqarSection'
+                // e subtrai 100px para deixar um espaço no topo (padding)
+                scrollTop: $('#iqarSection').offset().top - 100 
+            }, 800); // Rola em 800 milissegundos (rolagem suave)
+
+            // **IMPORTANTE**:
+            // Aqui é onde você chamará sua função de filtro (e.g., filtrarCidades(value))
+            // após garantir que a página rola corretamente.
+
+            // Exemplo de como ficaria com a lógica de filtro:
+            // filtrarCidades(value); 
+        }
+    });
+
+});
+</script>
 
 <!--Texto-->
 <div class="ui container section section-light">
@@ -115,7 +166,7 @@
             <tr>
                 <td>0–50</td>
                 <td>Bom</td>
-                <td style="background:#2196F3"></td> <!--Azul-->
+                <td style="background:#28a745"></td>
                 <td>0–54</td>
                 <td>-</td>
                 <td>0.0–12.0</td>
@@ -127,7 +178,7 @@
             <tr>
                 <td>151–200</td>
                 <td>Insalubre</td>
-                <td style="background:#4CAF50"></td> <!--Verde-->
+                <td style="background:#ffc107"></td>
                 <td>86–105</td>
                 <td>165–204</td>
                 <td>55.5–150.4</td>
@@ -139,7 +190,7 @@
             <tr>
                 <td>201–300</td>
                 <td>Muito prejudicial</td>
-                <td style="background:#FFEB3B"></td> <!--Amarelo-->
+                <td style="background:#fd7e14"></td>
                 <td>106–200</td>
                 <td>205–404</td>
                 <td>150.5–250.4</td>
@@ -151,7 +202,7 @@
             <tr>
                 <td>301–400</td>
                 <td>Perigoso</td>
-                <td style="background:#FF9800"></td> <!--Laranja-->
+                <td style="background:#dc3545"></td> 
                 <td>-</td>
                 <td>405–504</td>
                 <td>250.5–350.4</td>
@@ -163,7 +214,7 @@
             <tr>
                 <td>401–500</td>
                 <td>Perigoso / Muito perigoso</td>
-                <td style="background:#F44336"></td> <!--Vermelho-->
+                <td style="background:#6f42c1"></td> 
                 <td>-</td>
                 <td>505–604</td>
                 <td>350.5–500.4</td>
@@ -194,20 +245,107 @@
 
 
 
+<style>
+.city-aqi-list {
+    list-style: none; /* Remove marcadores de lista padrão */
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px; /* Aumenta a largura máxima para acomodar 3 colunas */
+    font-family: Arial, sans-serif;
+    display: grid;
+    /* Tenta 3 colunas com tamanhos iguais. Se a tela for menor, cai para 1 */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 15px; /* Espaço entre os itens (células do grid) */
+}
 
-<!--API-->
-<div class="ui container section section-light">
+.city-aqi-item {
+    display: flex; /* Mantém o layout interno flexível */
+    align-items: center;
+    padding: 10px 15px;
+    /* Remove o margin-bottom, pois o gap do grid já faz o espaçamento */
+    background-color: #ffffff; /* Fundo branco para cada item */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.city-aqi-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.color-pill {
+    width: 25px; 
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.city-name {
+    font-weight: bold;
+    color: #333;
+    flex-grow: 1;
+}
+
+.aqi-value {
+    font-size: 1em;
+    color: #555;
+    padding: 5px 10px;
+    border-radius: 5px;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Cores das pastilhas e do valor (MANTIDO) */
+.color-pill.green { background-color: #28a745; }
+.color-pill.yellow { background-color: #ffc107; }
+.color-pill.orange { background-color: #fd7e14; }
+.color-pill.red { background-color: #dc3545; }
+.color-pill.purple { background-color: #6f42c1; }
+.color-pill.maroon { background-color: #800000; }
+
+.aqi-value.green { color: #fff; background-color: #28a745; }
+.aqi-value.yellow { color: #333; background-color: #ffc107; }
+.aqi-value.orange { color: #fff; background-color: #fd7e14; }
+.aqi-value.red { color: #fff; background-color: #dc3545; }
+.aqi-value.purple { color: #fff; background-color: #6f42c1; }
+.aqi-value.maroon { color: #fff; background-color: #800000; }
+
+/* Para a div principal (AJUSTADO) */
+.section-light {
+    padding: 20px;
+    background-color: #ffffff; /* Fundo branco puro, removendo o cinza */
+    border-radius: 10px;
+}
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 5px;
+}
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+</style>
+
+<div class="ui container section section-light" id="iqarSection">
     <h2>Qualidade do Ar Atual nas capitais do Brasil</h2>
-        <p><em>Segundo a escala de classificação dos EUA (EPA):</em></p>
-    <canvas id="iqarChart"></canvas> <!--altera 1 -->
+    <p><em>Segundo a escala de classificação dos EUA (EPA):</em></p>
+    <ul id="iqarList" class="city-aqi-list">
+    </ul>
 </div>
 
 <script>
 fetch('/iqar/')
 .then(res => res.json())
 .then(data => {
+    const iqarList = document.getElementById('iqarList');
     if (!data.resultados || data.resultados.length === 0) {
-        document.getElementById('iqarChart').innerText = "Dados indisponíveis";
+        iqarList.innerHTML = "<li>Dados indisponíveis</li>";
         return;
     }
 
@@ -220,72 +358,55 @@ fetch('/iqar/')
     // Ordena do melhor (menor AQI) para o pior (maior AQI)
     cidades.sort((a, b) => a.aqi - b.aqi);
 
-    // Cria labels, valores e cores ordenados
-    const labels = cidades.map(item => item.cidade);
-    const valores = cidades.map(item => item.aqi);
-    const cores = valores.map(v => {
-        if (v <= 50) return "green";       // Boa
-        else if (v <= 100) return "yellow"; // Moderada
-        else if (v <= 150) return "orange";// Não saudável para grupos sensíveis
-        else if (v <= 200) return "red";   // Ruim
-        else if (v <= 300) return "purple";// Muito ruim
-        else return "maroon";               // Perigosa
-    });
+    // Itera sobre as cidades e cria os elementos da lista
+    cidades.forEach(item => {
+        const li = document.createElement('li');
+        li.classList.add('city-aqi-item');
 
-    // Cria gráfico
-    const ctx = document.getElementById('iqarChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "AQI (Índice de Qualidade do Ar EUA)",
-                data: valores,
-                backgroundColor: cores
-            }]
-        },
-        options: {
-            indexAxis: 'y', // barras horizontais
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'AQI EUA'
-                    }
-                }
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            const v = context.raw;
-                            let status = "";
-                            if (v <= 50) status = "Boa";
-                            else if (v <= 100) status = "Moderada";
-                            else if (v <= 150) status = "Não saudável p/ grupos sensíveis";
-                            else if (v <= 200) status = "Ruim";
-                            else if (v <= 300) status = "Muito ruim";
-                            else status = "Perigosa";
-                            return `${status} (AQI: ${v})`;
-                        }
-                    }
-                }
-            }
+        let statusClass = "";
+        let statusText = "";
+
+        if (item.aqi <= 50) { 
+            statusClass = "green"; 
+            statusText = "Bom"; 
         }
+        else if (item.aqi <= 200) { 
+            statusClass = "yellow"; 
+            statusText = "Insalubre"; 
+        }
+        else if (item.aqi <= 300) { 
+            statusClass = "orange";
+            statusText = "Muito prejudicial"; 
+        }
+        else if (item.aqi <= 400) { 
+            statusClass = "red";
+            statusText = "Perigoso"; 
+        }
+        else if (item.aqi <= 500) { 
+            statusClass = "purple";
+            statusText = "Perigoso / Muito perigoso"; 
+        }
+        else { 
+            statusClass = "maroon";
+            statusText = "Extremamente Perigoso"; 
+        }
+        li.innerHTML = `
+            <div class="color-pill ${statusClass}" title="${statusText}"></div>
+            <span class="city-name">${item.cidade}</span>
+            <span class="aqi-value ${statusClass}" title="${statusText} (AQI: ${item.aqi})">${item.aqi}</span>
+        `;
+        iqarList.appendChild(li);
     });
 })
 .catch(err => {
     console.error(err);
-    document.getElementById('iqarChart').innerText = "Erro ao carregar dados";
+    document.getElementById('iqarList').innerHTML = "<li>Erro ao carregar dados</li>";
 });
 </script>
 
-
 <!-- Footer -->
 <div class="ui container section section-light">
-    <p>Saiba mais sobre IQA</p>
+    <p id="saiba_mais">Saiba mais sobre IQA</p>
     <button class="ui button">Fonte</button>
 </div>
 
