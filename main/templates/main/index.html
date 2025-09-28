@@ -40,6 +40,7 @@
         .ui.header{
             color: #ffff;
         }
+        
     </style>
 </head>
 <body>
@@ -130,18 +131,25 @@ $(document).ready(function() {
 <!--Texto-->
 <div class="ui container section section-light">
     <h2>IQAr no Brasil</h2>
-    <p id="texto">
-        O Índice de Qualidade do Ar (IQAr) foi estabelecido inicialmente pela Resolução Conama nº 491, de 19 de novembro de 2018. Essa Resolução, assim como os padrões de qualidade do ar no Brasil, foi atualizada pela Resolução Conama nº 506, de 5 de julho de 2024.
-    </p>
+    <div id="iqar_brasil">
+        <p>
+            O Índice de Qualidade do Ar (IQAr) foi estabelecido inicialmente pela Resolução Conama nº 491, de 19 de novembro de 2018. Essa Resolução, assim como os padrões de qualidade do ar no Brasil, foi atualizada pela Resolução Conama nº 506, de 5 de julho de 2024.
+        </p>
 
-    <p>
-        O IQAr é uma ferramenta matemática utilizada para transformar as concentrações medidas dos diversos poluentes em um único valor adimensional, relacionando as concentrações dos poluentes monitorados aos possíveis efeitos adversos à saúde, visando facilitar a comunicação sobre a qualidade do ar à sociedade. Sua forma de cálculo e diretrizes para divulgação estão contidos na Orientação Técnica - Índice de Qualidade do Ar e também serão atualizados no Guia Técnico para o Monitoramento e Avaliação da Qualidade do ar.
-    </p>
+        <p>
+            O IQAr é uma ferramenta matemática utilizada para transformar as concentrações medidas dos diversos poluentes em um único valor adimensional, relacionando as concentrações dos poluentes monitorados aos possíveis efeitos adversos à saúde, visando facilitar a comunicação sobre a qualidade do ar à sociedade. Sua forma de cálculo e diretrizes para divulgação estão contidos na Orientação Técnica - Índice de Qualidade do Ar e também serão atualizados no Guia Técnico para o Monitoramento e Avaliação da Qualidade do ar.
+        </p>
 
-    <p>
-        Adicionalmente, a Resolução Conama nº 506/24 definiu que a forma de cálculo do IQAr deveria ser atualizada até a data de 31 de dezembro de 2024. Assim, o Ministério do Meio Ambiente e Mudança do Clima, por meio do Departamento de Qualidade Ambiental (DQA), coordenou junto aos órgãos ambientais estaduais e distrital a atualização da forma de cálculo do IQAr, tendo em vista os novos padrões de qualidade do ar estabelecidos.
-    </p>
+        <p>
+            Adicionalmente, a Resolução Conama nº 506/24 definiu que a forma de cálculo do IQAr deveria ser atualizada até a data de 31 de dezembro de 2024. Assim, o Ministério do Meio Ambiente e Mudança do Clima, por meio do Departamento de Qualidade Ambiental (DQA), coordenou junto aos órgãos ambientais estaduais e distrital a atualização da forma de cálculo do IQAr, tendo em vista os novos padrões de qualidade do ar estabelecidos.
+        </p>
+    </div>
 </div>
+<style>
+    #iqar_brasil p{
+        text-align: left;
+    }
+</style>
 
 <!-- Tabela AQI -->
 <div class="ui container section section-light">
@@ -231,17 +239,25 @@ $(document).ready(function() {
 <!--Texto 2-->
 <div class="ui container section section-light">
     <h2>A poluição do ar pode causar problemas de saúde?</h2>
-    <p id="texto2">
-    A poluição do ar refere-se a substâncias no ar que são prejudiciais à saúde humana e/ou ao planeta como um todo. Em níveis significativos, todos os tipos de poluição do ar representam um risco de efeitos adversos à saúde. A quantidade de risco para complicações de saúde depende da saúde geral de uma pessoa, do tipo de poluente, da concentração e da duração da exposição ao ar poluído.
-    </p>
+    <div id="texto_saude">
+        <p id="texto2">
+        A poluição do ar refere-se a substâncias no ar que são prejudiciais à saúde humana e/ou ao planeta como um todo. Em níveis significativos, todos os tipos de poluição do ar representam um risco de efeitos adversos à saúde. A quantidade de risco para complicações de saúde depende da saúde geral de uma pessoa, do tipo de poluente, da concentração e da duração da exposição ao ar poluído.
+        </p>
 
-    <p>
-    A Organização Mundial da Saúde (OMS) considerou a poluição do ar como o maior risco ambiental à saúde em 2019, estimando que contribui para 7 milhões de mortes prematuras anualmente. Entre as crianças com menos de 15 anos, é a principal causa de morte, matando 600.000 a cada ano.
-    </p>
+        <p>
+        A Organização Mundial da Saúde (OMS) considerou a poluição do ar como o maior risco ambiental à saúde em 2019, estimando que contribui para 7 milhões de mortes prematuras anualmente. Entre as crianças com menos de 15 anos, é a principal causa de morte, matando 600.000 a cada ano.
+        </p>
 
-    <p>
-    A poluição do ar é descrita como um 'assassino silencioso' porque raramente é a causa direta de morte. Em vez disso, a poluição do ar é a 4ª principal causa contribuinte de morte precoce no mundo, representando:
-    </p>
+        <p>
+        A poluição do ar é descrita como um 'assassino silencioso' porque raramente é a causa direta de morte. Estima-se que 99% da população global respira ar insalubre. Embora este número varie de região para região, nenhum lugar está isento de risco. O Relatório Mundial sobre a Qualidade do Ar de 2024 descobriu que 91% dos 138 países e regiões ao redor do mundo excederam o valor da diretriz anual da OMS para PM2.5 de 5 µg/m3, com a região da Ásia Central e do Sul entre as dez cidades mais poluídas do mundo.
+        </p>
+    </div>
+
+    <style>
+        #texto_saude p{
+            text-align: left;
+        }
+    </style>
 
 
 
@@ -407,8 +423,15 @@ fetch('/iqar/')
 <!-- Footer -->
 <div class="ui container section section-light">
     <p id="saiba_mais">Saiba mais sobre IQA</p>
-    <button class="ui button">Fonte</button>
+        <a href="https://www.gov.br/mma/pt-br/assuntos/meio-ambiente-urbano-recursos-hidricos-qualidade-ambiental/qualidade-do-ar/indice-de-qualidade-do-ar-iqar/orientacao-tecnica-indice-de-qualidade-do-ar-jan-25.pdf" target="_blank" class="ui button">
+            Fonte
+        </a>
 </div>
+<style>
+    #saiba_mais{
+        text-align: left;
+    }
+</style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.4/semantic.min.js"></script>
 </body>
