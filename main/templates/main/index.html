@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}IQAr Quality{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.4/semantic.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.3/semantic.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% extends "base.html" %}
+
+{% block content %}
     <style>
         body {
             margin: 0;
@@ -172,64 +165,64 @@ $(document).ready(function() {
     </thead>
         <tbody>
             <tr>
-                <td>0–50</td>
+                <td>050</td>
                 <td>Bom</td>
                 <td style="background:#28a745"></td>
-                <td>0–54</td>
+                <td>054</td>
                 <td>-</td>
-                <td>0.0–12.0</td>
-                <td>0–54</td>
-                <td>0.0–4.4</td>
-                <td>0–35 (1h)</td>
-                <td>0–53</td>
+                <td>0.012.0</td>
+                <td>054</td>
+                <td>0.04.4</td>
+                <td>035 (1h)</td>
+                <td>053</td>
             </tr>
             <tr>
-                <td>151–200</td>
+                <td>151200</td>
                 <td>Insalubre</td>
                 <td style="background:#ffc107"></td>
-                <td>86–105</td>
-                <td>165–204</td>
-                <td>55.5–150.4</td>
-                <td>255–354</td>
-                <td>12.5–15.4</td>
-                <td>186–304 (1h)</td>
-                <td>361–649</td>
+                <td>86105</td>
+                <td>165204</td>
+                <td>55.5-150.4</td>
+                <td>255-354</td>
+                <td>12.5-15.4</td>
+                <td>186-304 (1h)</td>
+                <td>361-649</td>
             </tr>
             <tr>
-                <td>201–300</td>
+                <td>201-300</td>
                 <td>Muito prejudicial</td>
                 <td style="background:#fd7e14"></td>
-                <td>106–200</td>
-                <td>205–404</td>
-                <td>150.5–250.4</td>
-                <td>355–424</td>
-                <td>15.5–30.4</td>
-                <td>305–604 (24h)</td>
-                <td>650–1249</td>
+                <td>106-200</td>
+                <td>205-404</td>
+                <td>150.5-250.4</td>
+                <td>355-424</td>
+                <td>15.5-30.4</td>
+                <td>305-604 (24h)</td>
+                <td>650-1249</td>
             </tr>
             <tr>
-                <td>301–400</td>
+                <td>301-400</td>
                 <td>Perigoso</td>
                 <td style="background:#dc3545"></td> 
                 <td>-</td>
-                <td>405–504</td>
-                <td>250.5–350.4</td>
-                <td>425–504</td>
-                <td>30.5–40.4</td>
-                <td>605–804 (24h)</td>
-                <td>1250–1649</td>
+                <td>405-504</td>
+                <td>250.5-350.4</td>
+                <td>425-504</td>
+                <td>30.5-40.4</td>
+                <td>605-804 (24h)</td>
+                <td>1250-1649</td>
             </tr>
             <tr>
-                <td>401–500</td>
+                <td>401-500</td>
                 <td>Perigoso / Muito perigoso</td>
                 <td style="background:#6f42c1"></td> 
                 <td>-</td>
-                <td>505–604</td>
-                <td>350.5–500.4</td>
-                <td>505–604</td>
-                <td>40.5–50.4</td>
-                <td>805–1004 (24h)</td>
-                <td>1650–2049</td>
+                <td>505-604</td>
+                <td>350.5-500.4</td>
+                <td>505-604</td>
+                <td>40.5-50.4</td>
+                <td>805-1004 (24h)</td>
+                <td>1650-2049</td>
             </tr>
         </tbody>
     </table>
@@ -419,20 +412,10 @@ fetch('/iqar/')
     document.getElementById('iqarList').innerHTML = "<li>Erro ao carregar dados</li>";
 });
 </script>
-
-<!-- Footer -->
-<div class="ui container section section-light">
-    <p id="saiba_mais">Saiba mais sobre IQA</p>
-        <a href="https://www.gov.br/mma/pt-br/assuntos/meio-ambiente-urbano-recursos-hidricos-qualidade-ambiental/qualidade-do-ar/indice-de-qualidade-do-ar-iqar/orientacao-tecnica-indice-de-qualidade-do-ar-jan-25.pdf" target="_blank" class="ui button">
-            Fonte
-        </a>
-</div>
 <style>
     #saiba_mais{
         text-align: left;
     }
 </style>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.4/semantic.min.js"></script>
 </body>
-</html>
+{% endblock %}
