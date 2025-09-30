@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-
 {% block title %}IQAr Quality{% endblock %}
-
 {% block content %}
 <body>
 <!--Menu horizontal-->
@@ -12,12 +10,10 @@
         <a class="item" href="https://www.linkedin.com/in/delucas027/" target="_blank">Linkedin</a>
     </div>
 </div>
-
 <!--Home-->
 <div class="home">
     <h1 class="ui header">IQAr - Índice de Qualidade do Ar</h1>
         <p>Descubra se a qualidade do ar da sua região está adequada.</p>
-
 <!--Dropdown-->
     <div class="ui search selection dropdown" id="estadoDropdown">
 <input name="estado" type="hidden">
@@ -57,7 +53,6 @@
         <div class="results"></div>
     </div>
 </div>
-
 <!--Texto principal-->
 <div class="ui container section section-light">
     <h2>IQAr no Brasil</h2>
@@ -73,7 +68,6 @@
         </p>
     </div>
 </div>
-
 <!--Tabela IQAr-->
 <div class="ui container section section-light">
     <h2>Índice de Qualidade do Ar (IQAr) - Escala Americana</h2>
@@ -157,7 +151,6 @@
         </tbody>
     </table>
 </div>
-
 <!--Texto Secundário-->
 <div class="ui container section section-light">
     <h2>A poluição do ar pode causar problemas de saúde?</h2>
@@ -172,7 +165,6 @@
         A poluição do ar é descrita como um 'assassino silencioso' porque raramente é a causa direta de morte. Estima-se que 99% da população global respira ar insalubre. Embora este número varie de região para região, nenhum lugar está isento de risco. O Relatório Mundial sobre a Qualidade do Ar de 2024 descobriu que 91% dos 138 países e regiões ao redor do mundo excederam o valor da diretriz anual da OMS para PM2.5 de 5 µg/m3, com a região da Ásia Central e do Sul entre as dez cidades mais poluídas do mundo.
         </p>
     </div>
-
 <!--Tabela com os dados da API-->
 <div class="ui container section section-light" id="iqarSection">
     <h2>Qualidade do Ar Atual nas capitais do Brasil</h2>
@@ -180,6 +172,5 @@
     <ul id="iqarList" class="city-aqi-list">
     </ul>
 </div>
-
 </body>
 {% endblock %}
