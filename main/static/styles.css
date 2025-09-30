@@ -1,0 +1,133 @@
+body {
+margin: 0;
+padding: 0;
+}
+
+.home {
+background-color: #1b1c1d;
+color: white;
+padding: 6.0rem 0;
+text-align: center;
+}
+
+.section {
+padding: 60px 0; 
+}
+
+.section-dark {
+background-color: #1b1c1d;
+color: white;
+}
+
+.ui.button.primary {
+background-color: #2185d0;
+color: white;
+}
+
+.ui.inverted.menu{
+border: 0 solid transparent;
+background: #1b1c1d;
+box-shadow: none;
+margin:0;
+border-radius: 0;
+}
+
+.ui.header{
+color: #ffff;
+}
+
+#iqar_brasil p{
+    text-align: left;
+}
+
+#texto_saude p{
+    text-align: left;
+}
+
+.city-aqi-list {
+    list-style: none; /* Remove marcadores de lista padrão */
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px; /* Aumenta a largura máxima para acomodar 3 colunas */
+    font-family: Arial, sans-serif;
+    display: grid;
+    /* Tenta 3 colunas com tamanhos iguais. Se a tela for menor, cai para 1 */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 15px; /* Espaço entre os itens (células do grid) */
+}
+
+.city-aqi-item {
+    display: flex; /* Mantém o layout interno flexível */
+    align-items: center;
+    padding: 10px 15px;
+    /* Remove o margin-bottom, pois o gap do grid já faz o espaçamento */
+    background-color: #ffffff; /* Fundo branco para cada item */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.city-aqi-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.color-pill {
+    width: 25px; 
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.city-name {
+    font-weight: bold;
+    color: #333;
+    flex-grow: 1;
+}
+
+.aqi-value {
+    font-size: 1em;
+    color: #555;
+    padding: 5px 10px;
+    border-radius: 5px;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Cores das pastilhas e do valor (MANTIDO) */
+.color-pill.green { background-color: #28a745; }
+.color-pill.yellow { background-color: #ffc107; }
+.color-pill.orange { background-color: #fd7e14; }
+.color-pill.red { background-color: #dc3545; }
+.color-pill.purple { background-color: #6f42c1; }
+.color-pill.maroon { background-color: #800000; }
+
+.aqi-value.green { color: #fff; background-color: #28a745; }
+.aqi-value.yellow { color: #333; background-color: #ffc107; }
+.aqi-value.orange { color: #fff; background-color: #fd7e14; }
+.aqi-value.red { color: #fff; background-color: #dc3545; }
+.aqi-value.purple { color: #fff; background-color: #6f42c1; }
+.aqi-value.maroon { color: #fff; background-color: #800000; }
+
+/* Para a div principal (AJUSTADO) */
+.section-light {
+    padding: 20px;
+    background-color: #ffffff; /* Fundo branco puro, removendo o cinza */
+    border-radius: 10px;
+}
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 5px;
+}
+p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#saiba_mais{
+    text-align: left;
+}
