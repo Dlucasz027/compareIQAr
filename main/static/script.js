@@ -1,18 +1,13 @@
-// A função $(document).ready garante que o DOM (seu HTML) está totalmente carregado
-// antes de tentar inicializar o componente Fomantic-UI.
 $(document).ready(function() {
     
-    // Inicializa o dropdown e adiciona o evento de mudança (onChange)
+    // Inicializa o dropdown
     $('#estadoDropdown').dropdown({
-        // A função onChange é executada sempre que um novo item é selecionado
         onChange: function(value, text, $selectedItem) {
             
-            // Aqui adicionamos a lógica de rolagem (scroll)
+            //Função de scroll
             $('html, body').animate({
-                // Pega a posição (topo) do elemento com o ID 'iqarSection'
-                // e subtrai 100px para deixar um espaço no topo (padding)
                 scrollTop: $('#iqarSection').offset().top - 100 
-            }, 800); // Rola em 800 milissegundos (rolagem suave)
+            }, 800);
         }
     });
 });
@@ -26,16 +21,13 @@ fetch('/iqar/')
         return;
     }
 
-    // Combina os dados em um array de objetos
     const cidades = data.resultados.map(item => ({
         cidade: item.cidade,
         aqi: item.aqi_eua ?? 0
     }));
 
-    // Ordena do melhor (menor AQI) para o pior (maior AQI)
     cidades.sort((a, b) => a.aqi - b.aqi);
 
-    // Itera sobre as cidades e cria os elementos da lista
     cidades.forEach(item => {
         const li = document.createElement('li');
         li.classList.add('city-aqi-item');

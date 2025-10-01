@@ -45,23 +45,21 @@ color: #ffff;
 }
 
 .city-aqi-list {
-    list-style: none; /* Remove marcadores de lista padrão */
+    list-style: none;
     padding: 0;
     margin: 0 auto;
-    max-width: 1200px; /* Aumenta a largura máxima para acomodar 3 colunas */
+    max-width: 1200px;
     font-family: Arial, sans-serif;
     display: grid;
-    /* Tenta 3 colunas com tamanhos iguais. Se a tela for menor, cai para 1 */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 15px; /* Espaço entre os itens (células do grid) */
+    gap: 15px; 
 }
 
 .city-aqi-item {
-    display: flex; /* Mantém o layout interno flexível */
+    display: flex; 
     align-items: center;
     padding: 10px 15px;
-    /* Remove o margin-bottom, pois o gap do grid já faz o espaçamento */
-    background-color: #ffffff; /* Fundo branco para cada item */
+    background-color: #ffffff; 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -96,7 +94,6 @@ color: #ffff;
     text-align: center;
 }
 
-/* Cores das pastilhas e do valor (MANTIDO) */
 .color-pill.green { background-color: #28a745; }
 .color-pill.yellow { background-color: #ffc107; }
 .color-pill.orange { background-color: #fd7e14; }
@@ -111,10 +108,9 @@ color: #ffff;
 .aqi-value.purple { color: #fff; background-color: #6f42c1; }
 .aqi-value.maroon { color: #fff; background-color: #800000; }
 
-/* Para a div principal (AJUSTADO) */
 .section-light {
     padding: 20px;
-    background-color: #ffffff; /* Fundo branco puro, removendo o cinza */
+    background-color: #ffffff; 
     border-radius: 10px;
 }
 h2 {
